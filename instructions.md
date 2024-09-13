@@ -1,5 +1,70 @@
 # Discussion Section - Week 4
 
+## C++ Review - References
+
+References are used all over C++ and are a very important concept to be familiar with. This includes using references both
+for function parameters and for return values from classes.
+
+Below is a class similar to the `Circle` class from the lecture exercices. It includes two different ways of getting the value
+for the radius of the circle.
+
+```c++
+class Circle
+{
+   private:
+      double radius_;
+
+   public:
+      Circle(double r) : radius_(r) {}
+
+      double get_radius_1() { return radius_; }
+
+      double & get_radius_2() { return radius_; }
+};
+```
+
+Here are a few code snippets. Without trying to compile the code, predict if the code will compile.
+If the code compiles, what is the value of `r` (if it exists)
+and the internal value of the `radius_` attribute at the end of the snippet? Why do you think that?
+
+After predicting, try writing a program and see if you were correct.
+
+1. ```c++
+   Circle c(1.0);
+   double r = c.get_radius_1();
+   r = 4.0;
+   ```
+
+1. ```c++
+   Circle c(1.0);
+   double r = c.get_radius_2();
+   r = 4.0;
+   ```
+   
+1. ```c++
+   Circle c(1.0);
+   c.get_radius_1() = 2.0;
+   ```
+
+1. ```c++
+   Circle c(1.0);
+   c.get_radius_2() = 2.0;
+   ```
+
+1. ```c++
+   Circle c(1.0);
+   double & r = c.get_radius_1();
+   r = 4.0;
+   ```
+
+1. ```c++
+   Circle c(1.0);
+   double & r = c.get_radius_2();
+   r = 4.0;
+   ```
+
+## Programming Paradigms
+
 Reading: [Overview of Programming Paradigms](https://doi-org.libproxy.berkeley.edu/10.1515/9783110564990-002) (2.1, 2.2, 2.3, 2.4) from "Mathematical Foundations of Data Science Using R".
 
 To complete this discussion session, your group should answer the questions in the README in a markdown file. 
@@ -10,7 +75,7 @@ Discussions are meant to be completed tonight and should be submitted at the end
 
 After the programming tasks, there are questions about a molecular science library called OpenMM that we will be using in our molecular dynamics lab.
 
-## Discussion Questions
+### Discussion Questions
 
 1. What are the characteristics of an imperative programming style or language? 
 Write this in your own words, rather than copying text from the reading.
@@ -27,7 +92,7 @@ How are variables different in functional vs. imperative programming?
 What paradigm or paradigms does everyone have experience with? 
 What programming paradigm did you program with when you started?
 
-## Programming Paradigms: Tasks
+### Programming Paradigms: Tasks
 
 For the programming task, you will be writing a few different versions of a factorial. If you need to refresh your memory for a factorial, please read the first part of the [Wikipedia page](https://en.wikipedia.org/wiki/Factorial).
 
@@ -42,14 +107,5 @@ For each of these tasks, you should write a C++ program with the name `paradigm_
 1. **Optional** `functional` - For the functional version of this calculation, you will need to utilize something called **recursion**. 
 In recursive functions, functions will call themselves.
  You can see pseudo-code for a functional factorial in 2.6 of the discussion reading.
-
-## Object-Oriented Programming: Introduction to OpenMM
-Tomorrow, we will be working with a molecular science library called [OpenMM](https://github.com/openmm/openmm) for our lab. 
-OpenMM heavily uses an object-oriented paradigm. We will see this tomorrow in our lab.
-View the OpenMM repository (linked above) and answer the following questions.
-
-1. What language or languages is OpenMM written in? Why do you think this is?
-2. Read the C++ [harmonic bond class](https://github.com/openmm/openmm/blob/a97bbeb40f60acefebb8a6feb0e2522c758d0db0/openmmapi/include/openmm/HarmonicBondForce.h#L50) in OpenMM. Using what you have learned about C++ classes already, explain the attributes and methods present in the class. Identify the construtor. Identify public and private variables and methods. What does this class represent? Is there anything in the class that you don't understand? We will discuss this as a class.
-3. Read the Python [topology class](https://github.com/openmm/openmm/blob/e2453f5ec1fc1fd7916e0b398033c3e9ed341877/wrappers/python/openmm/app/topology.py#L70) and perform the same exercise. Using what you have learned about Python classes, identify different aspects of the class. Where is the constructor defined and wht does it do? What are the class attributes and methods? Is there anything in the class that you don't understand? We will discuss this as a class.
 
 
